@@ -51,7 +51,7 @@ spec:
             configMapKeyRef:
               key: MONGODB_HOST
               name: mongodb-configmap
-        image: jitn/ivotback:v1
+        image: jitn/ivotback:v2
         name: ivot-backend
         ports:
         - containerPort: 8081
