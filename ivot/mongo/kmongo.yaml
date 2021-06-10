@@ -29,10 +29,10 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  storageClassName: manual
+  storageClassName: do-block-storage
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   labels:
     app: mongodb
