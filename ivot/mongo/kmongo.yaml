@@ -32,7 +32,7 @@ spec:
   storageClassName: do-block-storage
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   labels:
     app: mongodb
