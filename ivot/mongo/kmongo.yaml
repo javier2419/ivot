@@ -32,41 +32,29 @@ spec:
   storageClassName: do-block-storage
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   labels:
     app: mongodb
-  name: mongodb-deployment
+  name: mongodb-depl
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mongodb
+  serviceName: mongodb
   template:
     metadata:
       labels:
         app: mongodb
     spec:
       containers:
-      - env:
-        - name: MONGO_INITDB_ROOT_USERNAME
-          valueFrom:
-            secretKeyRef:
-              key: MONGODB_USERNAME
-              name: mongodb-secret
-        - name: MONGO_INITDB_ROOT_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: MONGODB_PASSWORD
-              name: mongodb-secret
-        image: mongo
+      - image: mongo
         name: mongodb
-        ports:
-        - containerPort: 27017
         volumeMounts:
         - mountPath: /data/db
-          name: ivot-mongo-storage
+          name: mongodb-storage
       volumes:
-      - name: ivot-mongo-storage
+      - name: mongodb-storage
         persistentVolumeClaim:
           claimName: mongodb-pv-claim
