@@ -28,33 +28,45 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
+      storage: 1Gi
   storageClassName: do-block-storage
 ---
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   labels:
     app: mongodb
-  name: mongodb-depl
+  name: mongodb-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: mongodb
-  serviceName: mongodb
   template:
     metadata:
       labels:
         app: mongodb
     spec:
       containers:
-      - image: mongo
+      - env:
+        - name: MONGO_INITDB_ROOT_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: MONGODB_USERNAME
+              name: mongodb-secret
+        - name: MONGO_INITDB_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: MONGODB_PASSWORD
+              name: mongodb-secret
+        image: mongo
         name: mongodb
+        ports:
+        - containerPort: 27017
         volumeMounts:
         - mountPath: /data/db
-          name: mongodb-storage
+          name: ivot-mongo-storage
       volumes:
-      - name: mongodb-storage
+      - name: ivot-mongo-storage
         persistentVolumeClaim:
           claimName: mongodb-pv-claim
