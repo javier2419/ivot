@@ -37,7 +37,6 @@ spec:
     targetPort: 8081
   selector:
     app: ivot-backend
-  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
