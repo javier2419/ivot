@@ -1,0 +1,65 @@
+apiVersion: v1
+data:
+  window.REACT_APP_GET_PROFILE: ivot-backend-service/api/history/
+  window.REACT_APP_REPORTING: ivot-backend-service/api/history
+  window.REACT_APP_REPORTING_GLOBAL: ivot-backend-service/api/history/global
+  window.REACT_LIST_USERS: ivot-backend-service/api/user/list
+kind: ConfigMap
+metadata:
+  name: ivot-backend-configmap
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ivot-frontend-service
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: ivot-frontend
+    type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ivot-frontend
+  name: ivot-frontend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ivot-frontend
+  template:
+    metadata:
+      labels:
+        app: ivot-frontend
+    spec:
+      containers:
+      - env:
+        - name: window.REACT_APP_REPORTING
+          valueFrom:
+            configMapKeyRef:
+              key: window.REACT_APP_REPORTING
+              name: ivot-backend-configmap
+        - name: window.REACT_LIST_USERS
+          valueFrom:
+            configMapKeyRef:
+              key: window.REACT_LIST_USERS
+              name: ivot-backend-configmap
+        - name: window.REACT_APP_REPORTING_GLOBAL
+          valueFrom:
+            configMapKeyRef:
+              key: window.REACT_APP_REPORTING_GLOBAL
+              name: ivot-backend-configmap
+        - name: window.REACT_APP_GET_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              key: window.REACT_APP_GET_PROFILE
+              name: ivot-backend-configmap
+        image: jitn/ivotfront:v1
+        name: ivot-frontend
+        ports:
+        - containerPort: 3000
