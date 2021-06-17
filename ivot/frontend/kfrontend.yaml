@@ -59,7 +59,7 @@ spec:
             configMapKeyRef:
               key: window.REACT_APP_GET_PROFILE
               name: ivot-backend-configmap
-        image: jitn/ivotfront:v2
+        image: jitn/ivotfront:v3
         name: ivot-frontend
         ports:
         - containerPort: 3000
