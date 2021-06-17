@@ -32,13 +32,11 @@ metadata:
   name: ivot-backend-service
 spec:
   ports:
-  - nodePort: 30007
     port: 8081
     targetPort: 8081
   selector:
     app: ivot-backend
     role: backend
-  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
