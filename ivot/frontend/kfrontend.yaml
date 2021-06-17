@@ -14,9 +14,9 @@ metadata:
   name: ivot-frontend-service
 spec:
   ports:
-  - name: http
-    port: 5000
+  - port: 5000
     protocol: TCP
+    targetPort: 5000
   selector:
     app: ivot-frontend
     role: backend
@@ -64,4 +64,4 @@ spec:
         image: jitn/ivotfront:v7
         name: ivot-frontend
         ports:
-        - containerPort: 5000
+        - containerPort: 3000
