@@ -15,7 +15,7 @@ metadata:
 spec:
   ports:
   - name: http
-    port: 3000
+    port: 5000
     protocol: TCP
   selector:
     app: ivot-frontend
@@ -61,7 +61,7 @@ spec:
             configMapKeyRef:
               key: window.REACT_APP_GET_PROFILE
               name: ivot-backend-configmap
-        image: jitn/ivotfront:v6
+        image: jitn/ivotfront:v7
         name: ivot-frontend
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
