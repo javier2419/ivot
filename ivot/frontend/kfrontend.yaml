@@ -64,4 +64,4 @@ spec:
         image: jitn/ivotfront:v4
         name: ivot-frontend
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
