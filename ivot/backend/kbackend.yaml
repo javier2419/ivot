@@ -3,7 +3,7 @@ data:
   MONGODB_DATABASE: devops-ivot
   MONGODB_HOST: devops-tools.3zejp.mongodb.net
   NODE_APP_API_REPORTING: https://api.victorops.com/api-reporting/v1/team/team-xwG7ASzGf9kflhfy/oncall/log?start=
-  NODE_PORT: "8081"
+  NODE_PORT: "80"
 kind: ConfigMap
 metadata:
   name: mongodb-configmap
