@@ -14,11 +14,12 @@ metadata:
   name: ivot-frontend-service
 spec:
   ports:
-  - port: 5000
+  - name: http
+    port: 5000
     protocol: TCP
-    targetPort: 5000
   selector:
     app: ivot-frontend
+    role: backend
   type: LoadBalancer
 ---
 apiVersion: apps/v1
@@ -59,7 +60,7 @@ spec:
             configMapKeyRef:
               key: window.REACT_APP_GET_PROFILE
               name: ivot-backend-configmap
-        image: jitn/ivotfront:v4
+        image: jitn/ivotfront:v3
         name: ivot-frontend
         ports:
-        - containerPort: 3000
+        - containerPort: 5000
