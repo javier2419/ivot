@@ -14,8 +14,7 @@ metadata:
   name: ivot-frontend-service
 spec:
   ports:
-  - nodePort: 5000
-    port: 5000
+  - port: 5000
     protocol: TCP
     targetPort: 5000
   selector:
