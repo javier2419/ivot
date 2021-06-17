@@ -99,7 +99,7 @@ spec:
             configMapKeyRef:
               key: NODE_APP_API_REPORTING
               name: mongodb-configmap
-        image: jitn/ivotback:v7
+        image: jitn/ivotback:v8
         name: ivot-backend
         ports:
         - containerPort: 80
