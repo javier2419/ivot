@@ -37,6 +37,7 @@ spec:
   selector:
     app: ivot-backend
     role: backend
+  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
