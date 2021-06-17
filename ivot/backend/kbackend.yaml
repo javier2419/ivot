@@ -37,6 +37,7 @@ spec:
     targetPort: 8081
   selector:
     app: ivot-backend
+    role: backend
   type: NodePort
 ---
 apiVersion: apps/v1
@@ -44,6 +45,7 @@ kind: Deployment
 metadata:
   labels:
     app: ivot-backend
+    role: backend
   name: ivot-backend-deployment
 spec:
   replicas: 1
