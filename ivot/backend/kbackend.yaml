@@ -37,7 +37,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: ivot-backend
     role: ivot-backend
   type: NodePort
 ---
@@ -45,7 +44,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: ivot-backend
     role: ivot-backend
   name: ivot-backend
 spec:
