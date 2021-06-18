@@ -32,7 +32,7 @@ metadata:
   name: ivot-backend
 spec:
   ports:
-  - nodePort: 30036
+  - nodePort: 30038
     port: 8080
     protocol: TCP
     targetPort: 8080
