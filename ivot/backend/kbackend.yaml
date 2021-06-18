@@ -32,13 +32,13 @@ metadata:
   name: ivot-backend
 spec:
   ports:
-  - nodePort: 30038
+  - nodePort: 30036
     port: 8080
     protocol: TCP
     targetPort: 8080
   selector:
     app: ivot-backend
-    role: backend
+    role: ivot-backend
   type: NodePort
 ---
 apiVersion: apps/v1
@@ -46,7 +46,7 @@ kind: Deployment
 metadata:
   labels:
     app: ivot-backend
-    role: backend
+    role: ivot-backend
   name: ivot-backend
 spec:
   replicas: 1
