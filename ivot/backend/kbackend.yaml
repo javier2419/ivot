@@ -29,13 +29,13 @@ type: Opaque
 apiVersion: v1
 kind: Service
 metadata:
-  name: ivot-backend-service
+  name: ivot-backend
 spec:
   ports:
-  - port: 8081
-    targetPort: 8081
-    nodePort: 30036
+  - nodePort: 30036
+    port: 8080
     protocol: TCP
+    targetPort: 8080
   selector:
     app: ivot-backend
     role: backend
@@ -47,7 +47,7 @@ metadata:
   labels:
     app: ivot-backend
     role: backend
-  name: ivot-backend-deployment
+  name: ivot-backend
 spec:
   replicas: 1
   selector:
@@ -103,4 +103,4 @@ spec:
         image: jitn/ivotback:v7
         name: ivot-backend
         ports:
-        - containerPort: 8081
+        - containerPort: 8080
